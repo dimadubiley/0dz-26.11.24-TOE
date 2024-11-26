@@ -1,5 +1,5 @@
 /*
-LIFO
+//LIFO
 #include <iostream>
 using namespace std;
 
@@ -14,7 +14,6 @@ struct Node
 template <typename T>
 class Stack
 {
-private:
     Node<T>* top;
 
 public:
@@ -101,7 +100,6 @@ struct Node
 template <typename T>
 class Queue
 {
-private:
     Node<T>* front;
     Node<T>* rear;
 
