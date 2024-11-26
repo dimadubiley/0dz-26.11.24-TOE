@@ -1,3 +1,5 @@
+/*
+LIFO
 #include <iostream>
 using namespace std;
 
@@ -78,3 +80,108 @@ int main()
     cout << "Top element after pop: " << stack.topElement() << endl;
 
 }
+*/
+
+
+
+/*
+//FIFO
+#include <iostream>
+using namespace std;
+
+template <typename T>
+struct Node
+{
+    T data;
+    Node* next;
+    Node* prev;
+    Node(T data) : data(data), next(nullptr), prev(nullptr) {}
+};
+
+template <typename T>
+class Queue
+{
+private:
+    Node<T>* front;
+    Node<T>* rear;
+
+public:
+    Queue() : front(nullptr), rear(nullptr) {}
+
+    void enqueue(const T& value)
+    {
+        Node<T>* newNode = new Node<T>(value);
+        if (rear != nullptr)
+        {
+            rear->next = newNode;
+            newNode->prev = rear;
+            rear = newNode;
+        }
+        else
+        {
+            front = rear = newNode;
+        }
+    }
+
+    void dequeue()
+    {
+        if (front != nullptr)
+        {
+            Node<T>* temp = front;
+            front = front->next;
+            if (front != nullptr)
+            {
+                front->prev = nullptr;
+            }
+            else
+            {
+                rear = nullptr;
+            }
+            delete temp;
+        }
+        else
+        {
+            cout << "Queue is empty!" << endl;
+        }
+    }
+
+    T frontElement() const
+    {
+        if (front != nullptr)
+        {
+            return front->data;
+        }
+        else
+        {
+            throw runtime_error("Queue is empty!");
+        }
+    }
+
+    bool isEmpty() const
+    {
+        return front == nullptr;
+    }
+
+    ~Queue()
+    {
+        while (front != nullptr)
+        {
+            dequeue();
+        }
+    }
+};
+
+int main()
+{
+    Queue<int> queue;
+    queue.enqueue(10);
+    queue.enqueue(20);
+    queue.enqueue(30);
+
+    cout << "Front element: " << queue.frontElement() << endl;
+
+    queue.dequeue();
+    cout << "Front element after dequeue: " << queue.frontElement() << endl;
+
+}
+*/
